@@ -41,7 +41,6 @@
         android:id="@+id/otmAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="148dp"
         android:backgroundTint="#0B245E"
         android:text="Отмена"
         android:textColor="@color/white"
@@ -49,10 +48,10 @@
         app:cornerRadius="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.858"
+        app:layout_constraintHorizontal_bias="0.854"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/zenaAdd"
-        app:layout_constraintVertical_bias="0.642"
+        app:layout_constraintVertical_bias="0.253"
         app:strokeColor="#FF0000"
         app:strokeWidth="2dp" />
 

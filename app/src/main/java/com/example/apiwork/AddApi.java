@@ -141,7 +141,7 @@ public class AddApi extends AppCompatActivity {
     }
     private void postData(String user, String konfiguracia, String zena ,String Image) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://ngknn.ru:5001/NGKNN/СорокинДА/api/")
+                .baseUrl("https://ngknn.ru:5001/NGKNN/МанаковКА/api/")
 
                 .addConverterFactory(GsonConverterFactory.create())
 

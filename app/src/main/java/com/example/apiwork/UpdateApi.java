@@ -12,6 +12,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -40,13 +41,18 @@ public class UpdateApi extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_api);
+
         mask=getIntent().getParcelableExtra("zakaz");
+
         UpdUser = findViewById(R.id.userUpd);
         UpdUser.setText(mask.getUser());
+
         UpdKonfirurate = findViewById(R.id.konfigurateUpd);
         UpdKonfirurate.setText(mask.getKonfiguracia());
+
         UpdZena = findViewById(R.id.zenaUpd);
         UpdZena.setText(Integer.toString(mask.getZena()));
+
         UpdButton = findViewById(R.id.updButton);
         imageButtonUpd = findViewById(R.id.imageViewUpd);
         imageButtonUpd.setImageBitmap(getImgBitmap(mask.getImg()));
@@ -98,14 +104,12 @@ public class UpdateApi extends AppCompatActivity {
         }
     }
 
-    private void getImage()
-    {
+    private void getImage() {
         Intent intentChooser= new Intent();
         intentChooser.setType("image/*");
         intentChooser.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intentChooser,1);
     }
-
     private String encodeImage(Bitmap bitmap) {
         int prevW = 150;
         int prevH = bitmap.getHeight() * prevW / bitmap.getWidth();
@@ -119,6 +123,7 @@ public class UpdateApi extends AppCompatActivity {
         }
         return "";
     }
+
     public void Update_click(View v)
     {
         AlertDialog.Builder builder=new AlertDialog.Builder(UpdateApi.this);
@@ -128,23 +133,15 @@ public class UpdateApi extends AppCompatActivity {
                 .setPositiveButton("Да", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        if (ImgUpd=="") {
-                            ImgUpd=null;
-                            Update(UpdUser.getText().toString(), UpdKonfirurate.getText().toString(), UpdZena.getText().toString(), ImgUpd);
-                        }
-                        else
+                        if (ImgUpd == null)
                         {
-                            Update(UpdUser.getText().toString(), UpdKonfirurate.getText().toString(), UpdZena.getText().toString(), ImgUpd);
+                            ImgUpd = mask.getImg();
                         }
-                        new CountDownTimer(1000, 1000) {
-                            public void onFinish() {
-                                Next();
-                            }
-
-                            public void onTick(long millisUntilFinished) {
-
-                            }
-                        }.start();
+                        else {
+                            Update(UpdUser.getText().toString(), UpdKonfirurate.getText().toString(), UpdZena.getText().toString(), ImgUpd);
+                            SystemClock.sleep(1000);
+                            Next();
+                        }
                     }
                 })
                 .setNegativeButton("Нет", new DialogInterface.OnClickListener() {
